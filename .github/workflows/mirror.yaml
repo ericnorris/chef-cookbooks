@@ -1,0 +1,19 @@
+name: Mirror `facebook/main`
+
+on:
+  workflow_dispatch:
+
+permissions: write-all
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run:
+          ./sync-branch etsy/mirror
